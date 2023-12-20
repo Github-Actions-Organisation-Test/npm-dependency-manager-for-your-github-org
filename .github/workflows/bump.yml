@@ -14,9 +14,9 @@ jobs:
         id: packagejson
         run: test -e ./package.json && echo "exists=true" >> $GITHUB_OUTPUT || echo "exists=false" >> $GITHUB_OUTPUT
       - name: Bumping latest version of this package in other repositories
-        uses: derberg/npm-dependency-manager-for-your-github-org@26a4f13d740254719971325046822a169aaa7441 # using v5.-.- https://github.com/derberg/npm-dependency-manager-for-your-github-org/releases/tag/v5.0.0
+        uses: ./ # using v5.-.- https://github.com/derberg/npm-dependency-manager-for-your-github-org/releases/tag/v5.0.0
         with:
-          dependency: @asyncapi/glee
+          dependency: '@asyncapi/glee'
           github_token: ${{ secrets.GH_TOKEN }}
           committer_username: asyncapi-bot
           committer_email: info@asyncapi.io
