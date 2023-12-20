@@ -16,7 +16,8 @@ jobs:
       - name: Bumping latest version of this package in other repositories
         uses: ./ # using v5.-.- https://github.com/derberg/npm-dependency-manager-for-your-github-org/releases/tag/v5.0.0
         with:
-          dependency: '@asyncapi/glee'
+          dependency: '@vercel/ncc'
+          version: '0.23.1'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           committer_username: asyncapi-bot
           committer_email: info@asyncapi.io
