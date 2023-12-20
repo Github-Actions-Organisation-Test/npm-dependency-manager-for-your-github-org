@@ -1,6 +1,11 @@
 name: NPM Dependency Manager For Your GitHub Organization
 description: This action handles automated update of dependencies in package.json between projects from the same GitHub organization.
 inputs:
+  dependency:
+    description: >
+      Name of the dependency that should be updated in package.json files.
+      In the format: `@my-org/my-dependency`.
+    required: true
   github_token:
     description: >
       Token to use GitHub API. It must have "repo" scopes so it can push to repos.

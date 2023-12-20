@@ -11446,8 +11446,8 @@ async function run() {
   const gitHubKey = process.env.GITHUB_TOKEN || core.getInput('github_token', { required: true });
   const committerUsername = core.getInput('committer_username') || 'web-flow';
   const committerEmail = core.getInput('committer_email') || 'noreply@github.com';
-  const packageJsonPath = process.env.PACKAGE_JSON_LOC || core.getInput('packagejson_path') || './';
-  const { name: dependencyName, version: dependencyVersion} = await readPackageJson(path.join(packageJsonPath, 'package.json'));
+  const dependencyName = core.getInput('dependency') || 'lodash';
+  const dependencyVersion = core.getInput('version') || 'latest';
   core.info(`Identified dependency name as ${dependencyName} with version ${dependencyVersion}. Now it will be bumped in dependent projects.`);
   const commitMessageProd = core.getInput('commit_message_prod') || `fix: update ${dependencyName} to ${dependencyVersion} version`;
   const commitMessageDev = core.getInput('commit_message_dev') || `chore: update ${dependencyName} to ${dependencyVersion} version`;
