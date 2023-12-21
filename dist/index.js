@@ -1826,13 +1826,9 @@ async function getReposList(octokit, name, owner) {
   const { data: { items } } = await octokit.search.code({
     q: `"${name}" user:${owner} in:file filename:package.json`
   });
-
-  console.log(items);
-
-  console.log('query :', `"${name}" user:${owner} in:file filename:package.json`);
   
   // Groups paths by repository id
-  return items.reduce((acc, item) => {
+  const result = items.reduce((acc, item) => {
     const index = acc.findIndex(repo => repo.id === item.repository.id);
     const path = item.path;
     delete item.path;
@@ -1841,7 +1837,13 @@ async function getReposList(octokit, name, owner) {
     } else {
       acc[index].paths.push(path);
     }
+
+    return acc;
   }, []);
+
+  console.log(result);
+
+  return result;
 }
 
 async function createPr(octokit, branchName, id, commitMessage, defaultBranch) {
