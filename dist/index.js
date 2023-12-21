@@ -1818,18 +1818,22 @@ module.exports = {
 /***/ }),
 
 /***/ 119:
-/***/ (function(module) {
+/***/ (function(module, __unusedexports, __webpack_require__) {
 
 module.exports = { getReposList, createPr, getRepoDefaultBranch };
+
+const core = __webpack_require__(186);
 
 async function getReposList(octokit, name, owner) {
   const { data: { items } } = await octokit.search.code({
     q: `"${name}" user:${owner} in:file filename:package.json`
   });
   
+  core.debug(JSON.stringify(items, null, 2));
+
   // Groups paths by repository id
   const result = items.reduce((acc, item) => {
-    const index = acc.findIndex(repo => repo.id === item.repository.id);
+    const index = acc.findIndex(repo => repo.repository.id === item.repository.id);
     const path = item.path;
     delete item.path;
     if (index === -1) {
@@ -1841,7 +1845,7 @@ async function getReposList(octokit, name, owner) {
     return acc;
   }, []);
 
-  console.log(result);
+  core.debug(JSON.stringify(result, null, 2));
 
   return result;
 }

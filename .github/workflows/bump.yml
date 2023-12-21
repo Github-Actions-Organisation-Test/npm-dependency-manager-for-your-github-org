@@ -17,8 +17,8 @@ jobs:
         uses: ./ # using v5.-.- https://github.com/derberg/npm-dependency-manager-for-your-github-org/releases/tag/v5.0.0
         with:
           dependency: '@vercel/ncc'
-          version: '0.23.1'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          version: '0.24.0'
+          github_token: ${{ secrets.GH_TOKEN }}
           committer_username: asyncapi-bot
           committer_email: info@asyncapi.io
           repos_to_ignore: html-template # this is temporary until react component releases 1.0, then it can be removed
